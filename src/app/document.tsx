@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import "../styles.css";
+import styles from "../styles.css?url";
 
 function themeCheck() {
   let prefersDarkModeQuery = window.matchMedia("(prefers-color-scheme: dark)");
@@ -13,18 +13,23 @@ function themeCheck() {
   });
 }
 
-export default function Root({ children }: { children: ReactNode }) {
+export function Document({ children }: { children: ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head suppressHydrationWarning>
-        <title>Waku Template</title>
-      </head>
-      <body>
+      <head>
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>RSC Todos Redwood</title>
+        <link rel="modulepreload" href="/src/client.tsx" />
+        <link rel="stylesheet" href={styles} />
         <script
           // biome-ignore lint/security/noDangerouslySetInnerHtml: <explanation>
           dangerouslySetInnerHTML={{ __html: `(${themeCheck.toString()})()` }}
         />
-        {children}
+      </head>
+      <body>
+        <div id="root">{children}</div>
+        <script>import("/src/client.tsx")</script>
       </body>
     </html>
   );

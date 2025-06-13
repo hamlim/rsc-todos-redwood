@@ -1,12 +1,20 @@
 {
-  "name": "waku-template",
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "rsc-todos-redwood",
   "compatibility_date": "2025-04-16",
+  "main": "src/worker.tsx",
   "compatibility_flags": ["nodejs_compat"],
-  "main": "./dist/worker/serve-cloudflare.js",
   "assets": {
-    "directory": "./dist/assets",
-    "binding": "ASSETS",
-    "html_handling": "drop-trailing-slash",
-    "not_found_handling": "404-page"
-  }
+    "binding": "ASSETS"
+  },
+  "observability": {
+    "enabled": true
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "rsc-todos-redwood",
+      "database_id": "ba6aafe3-f0d0-4ec3-8792-f987fb3f46ef"
+    }
+  ]
 }
