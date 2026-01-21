@@ -21,7 +21,7 @@
     "react": "experimental",
     "react-dom": "experimental",
     "rwsdk": "0.0.88",
-    "wrangler": "4.18.0"
+    "wrangler": "4.59.1"
   },
   "imports": {
     "#/*": "./src/*",
